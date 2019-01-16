@@ -20,6 +20,7 @@ const loginSuccess = (state, action) => {
   const { username } = action.payload;
   const time = Date.now();
   return {
+    logged: true,
     username,
     time
   };
@@ -28,12 +29,15 @@ const loginSuccess = (state, action) => {
 const loginFail = (state, action) => {
   const { error } = action.payload;
   return {
+    logged: false,
     error
   };
 };
 
 const logout = (state, action) => {
-  return {};
+  return {
+    logged: false
+  };
 };
 
 export default authReducer;
