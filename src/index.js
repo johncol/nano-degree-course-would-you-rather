@@ -7,7 +7,7 @@ import App from './components/App';
 import reducers from './state/reducers';
 import middlewares from './state/middlewares';
 
-import './index.scss';
+import './styles/index.scss';
 
 const store = createStore(reducers, middlewares);
 

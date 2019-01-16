@@ -139,7 +139,7 @@ export function _login(username, password) {
       if (user) {
         resolve({ user });
       } else {
-        reject({ message: 'Bad credentials' });
+        reject({ message: 'Username or password invalid' });
       }
     }, 1000);
   });

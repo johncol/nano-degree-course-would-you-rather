@@ -1,6 +1,8 @@
+@import './../../styles/base';
+
 .login {
   min-width: 30rem;
-  max-width: 50rem;
+  max-width: 40rem;
 
   position: absolute;
   top: 50%;
@@ -11,5 +13,10 @@
     color: #ff2b46;
     margin: 0 0 4rem;
     font-size: 1.5rem;
+  }
+
+  @media screen and (min-width: $breakpoint) {
+    min-width: 40rem;
+    max-width: 40rem;
   }
 }
