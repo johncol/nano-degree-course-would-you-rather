@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import './login.scss';
 import InputField from '../shared/input-field/InputField';
 import Button from '../shared/button/Button';
+import { AuthAction } from '../../state/actions/auth';
+
+import './login.scss';
 
 class Login extends Component {
   state = {
@@ -18,12 +21,13 @@ class Login extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
-    console.log(this.state);
+    const { username, password } = this.state;
+    this.props.login(username, password);
   };
 
   render() {
     const { username, password } = this.state;
+    const { auth } = this.props;
     return (
       <section className="login">
         <form autoComplete="off" onSubmit={this.handleFormSubmit}>
@@ -32,6 +36,8 @@ class Login extends Component {
           </header>
 
           <div className="content content--grey">
+            {auth.error && <p className="login__result">{auth.error}</p>}
+
             <InputField
               placeholder="username"
               label="Username"
@@ -58,4 +64,15 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const stateToProps = state => ({
+  auth: state.auth
+});
+
+const dispatchToProps = dispatch => ({
+  login: (username, password) => dispatch(AuthAction.login(username, password))
+});
+
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(Login);
