@@ -6,3 +6,10 @@
     background-color: #7b7b7b;
   }
 }
+
+.btn:focus,
+.btn-large:focus,
+.btn-small:focus,
+.btn-floating:focus {
+  background-color: #383838;
+}
