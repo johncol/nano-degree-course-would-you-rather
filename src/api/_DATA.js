@@ -132,6 +132,19 @@ export function _getUsers() {
   });
 }
 
+export function _login(username, password) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const user = users[username];
+      if (user) {
+        resolve({ user });
+      } else {
+        reject({ message: 'Bad credentials' });
+      }
+    }, 1000);
+  });
+}
+
 export function _getQuestions() {
   return new Promise((res, rej) => {
     setTimeout(() => res({ ...questions }), 1000);
