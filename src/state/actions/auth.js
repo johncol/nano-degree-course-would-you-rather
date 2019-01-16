@@ -24,10 +24,10 @@ const AuthActionCreator = {
   })
 };
 
-const login = dispatch => (username, password) => {
+const login = (username, password) => dispatch => {
   return API._login(username, password)
-    .then(user => {
-      dispatch(AuthActionCreator.loginSuccess(user.id));
+    .then(response => {
+      dispatch(AuthActionCreator.loginSuccess(response.user.id));
     })
     .catch(error => {
       dispatch(AuthActionCreator.loginFail(error.message));
