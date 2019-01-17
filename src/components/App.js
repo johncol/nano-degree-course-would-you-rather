@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import Login from './login/Login';
+import Navigation from './navigation/Navigation';
 
 class App extends Component {
   render() {
@@ -10,7 +12,16 @@ class App extends Component {
       return <Login />;
     }
 
-    return <h1>{auth.username}</h1>;
+    return (
+      <BrowserRouter>
+        <div className="main-container">
+          <Navigation />
+          <div>
+            <Login />
+          </div>
+        </div>
+      </BrowserRouter>
+    );
   }
 }
 

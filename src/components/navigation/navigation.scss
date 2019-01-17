@@ -1,0 +1,39 @@
+@import './../../styles/base';
+
+nav {
+  background-color: #4d4d4d;
+  text-transform: uppercase;
+  height: 70px;
+  line-height: 70px;
+
+  ul {
+    display: flex;
+    justify-content: space-around;
+
+    li {
+      float: none;
+    }
+
+    a {
+      font-size: 1.4rem;
+      padding: 0 1rem;
+      color: #dedede;
+
+      &.active {
+        background-color: rgba(0, 0, 0, 0.2);
+        color: #ef807e;
+      }
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-sm) {
+    ul {
+      justify-content: flex-end;
+
+      a {
+        font-size: 1.6rem;
+        padding: 0 2rem;
+      }
+    }
+  }
+}
