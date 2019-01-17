@@ -6,6 +6,11 @@
   }
 }
 
+.input-field > label {
+  font-size: 1.7rem;
+  top: -0.8rem;
+}
+
 input:not([type]):focus:not([readonly]),
 input[type='text']:not(.browser-default):focus:not([readonly]),
 input[type='password']:not(.browser-default):focus:not([readonly]),
