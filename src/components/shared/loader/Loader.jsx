@@ -12,7 +12,7 @@ const Loader = props => {
   return (
     <div className="loader-outer">
       <div className="loader-inner">
-        <ReactLoader type="Puff" color="#00BFFF" height="100" width="100" />
+        <ReactLoader type="Puff" color="#ff474f" height="100" width="100" />
       </div>
     </div>
   );
