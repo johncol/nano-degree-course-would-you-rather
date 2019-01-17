@@ -1,4 +1,5 @@
 import * as API from './../../api/_DATA';
+import { LoaderAction } from './loader';
 
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAIL = 'LOGIN_FAIL';
@@ -25,12 +26,16 @@ const AuthActionCreator = {
 };
 
 const login = (username, password) => dispatch => {
+  dispatch(LoaderAction.showLoader());
   return API._login(username, password)
     .then(response => {
       dispatch(AuthActionCreator.loginSuccess(response.user.id));
     })
     .catch(error => {
       dispatch(AuthActionCreator.loginFail(error.message));
+    })
+    .finally(() => {
+      dispatch(LoaderAction.hideLoader());
     });
 };
 
