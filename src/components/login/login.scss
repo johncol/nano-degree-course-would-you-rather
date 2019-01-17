@@ -15,7 +15,7 @@
     font-size: 1.5rem;
   }
 
-  @media screen and (min-width: $breakpoint) {
+  @media screen and (min-width: $breakpoint-md) {
     min-width: 40rem;
     max-width: 40rem;
   }
