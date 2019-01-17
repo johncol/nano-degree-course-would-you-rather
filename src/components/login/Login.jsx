@@ -7,6 +7,19 @@ import { AuthAction } from '../../state/actions/auth';
 
 import './login.scss';
 
+const LoginHeader = () => (
+  <header className="content content--red">
+    <h1>Login area</h1>
+  </header>
+);
+
+const LoginResult = ({ auth }) => {
+  if (!auth.error) {
+    return null;
+  }
+  return <p className="login__result">{auth.error}</p>;
+};
+
 class Login extends Component {
   state = {
     username: '',
@@ -29,37 +42,31 @@ class Login extends Component {
     const { username, password } = this.state;
     const { auth } = this.props;
     return (
-      <section className="login">
-        <form autoComplete="off" onSubmit={this.handleFormSubmit}>
-          <header className="content content--red">
-            <h1>Login area</h1>
-          </header>
+      <form className="login" autoComplete="off" onSubmit={this.handleFormSubmit}>
+        <LoginHeader />
 
-          <div className="content content--grey">
-            {auth.error && <p className="login__result">{auth.error}</p>}
+        <div className="content content--grey">
+          <LoginResult auth={auth} />
 
-            <InputField
-              placeholder="username"
-              label="Username"
-              id="username"
-              type="text"
-              value={username}
-              onChange={event => this.updateField(event, 'username')}
-            />
+          <InputField
+            label="Username"
+            id="username"
+            type="text"
+            value={username}
+            onChange={event => this.updateField(event, 'username')}
+          />
 
-            <InputField
-              placeholder="password"
-              label="Password"
-              id="password"
-              type="password"
-              value={password}
-              onChange={event => this.updateField(event, 'password')}
-            />
+          <InputField
+            label="Password"
+            id="password"
+            type="password"
+            value={password}
+            onChange={event => this.updateField(event, 'password')}
+          />
 
-            <Button>Submit</Button>
-          </div>
-        </form>
-      </section>
+          <Button>Submit</Button>
+        </div>
+      </form>
     );
   }
 }
