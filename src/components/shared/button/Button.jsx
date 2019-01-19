@@ -2,20 +2,14 @@ import React from 'react';
 
 import './button.scss';
 
-const defaults = {
-  type: 'submit'
-};
-
 const Button = props => {
-  const { type, children } = props;
+  const className = props.className ? ' ' + props.className : '';
   return (
     <button
-      className="btn waves-effect waves-light"
-      type={type || defaults.type}
+      {...props}
+      className={'btn waves-effect waves-light' + className}
       name="action"
-    >
-      {children}
-    </button>
+    />
   );
 };
 
