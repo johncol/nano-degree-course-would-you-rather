@@ -36,6 +36,13 @@ class Login extends Component {
     event.preventDefault();
     const { username, password } = this.state;
     this.props.login(username, password);
+    this.passwordInput.focus();
+    this.passwordInput.select();
+  };
+
+  fieldsAreEmpty = () => {
+    const { username, password } = this.state;
+    return username.trim() === '' || password.trim() === '';
   };
 
   render() {
@@ -62,9 +69,10 @@ class Login extends Component {
             type="password"
             value={password}
             onChange={event => this.updateField(event, 'password')}
+            saveRef={passwordInput => (this.passwordInput = passwordInput)}
           />
 
-          <Button>Submit</Button>
+          <Button disabled={this.fieldsAreEmpty()}>Submit</Button>
         </div>
       </form>
     );
