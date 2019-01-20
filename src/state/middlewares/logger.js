@@ -1,6 +1,8 @@
 const logger = store => next => action => {
   console.group(action.type);
-  console.log('Payload: ', action.payload);
+  if (action.payload !== undefined) {
+    console.log('Payload: ', action.payload);
+  }
   const result = next(action);
   console.log('New state: ', store.getState());
   console.groupEnd();
