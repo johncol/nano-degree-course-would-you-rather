@@ -29,13 +29,12 @@ const login = (username, password) => dispatch => {
   dispatch(LoaderAction.showLoader());
   return API._login(username, password)
     .then(response => {
+      dispatch(LoaderAction.hideLoader());
       dispatch(AuthActionCreator.loginSuccess(response.user));
     })
     .catch(error => {
-      dispatch(AuthActionCreator.loginFail(error.message));
-    })
-    .finally(() => {
       dispatch(LoaderAction.hideLoader());
+      dispatch(AuthActionCreator.loginFail(error.message));
     });
 };
 
