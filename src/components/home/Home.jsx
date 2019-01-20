@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import PollPreviewList from './../shared/poll-preview-list/PollPreviewList';
+import QuestionPreviewList from './../shared/question-preview-list/QuestionPreviewList';
 import { QuestionAction } from '../../state/actions/questions';
 
 class Home extends Component {
@@ -13,7 +13,7 @@ class Home extends Component {
     const { questions } = this.props;
     return (
       <div>
-        <PollPreviewList polls={questions} title="All questions" />
+        <QuestionPreviewList questions={questions} title="All questions" />
       </div>
     );
   }
