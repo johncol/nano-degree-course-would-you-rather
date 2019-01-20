@@ -1,3 +1,5 @@
+const timeout = 1000;
+
 let users = {
   sarahedo: {
     id: 'sarahedo',
@@ -128,7 +130,7 @@ function generateUID() {
 
 export function _getUsers() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...users }), 1000);
+    setTimeout(() => res({ ...users }), timeout);
   });
 }
 
@@ -141,13 +143,13 @@ export function _login(username, password) {
       } else {
         reject({ message: 'Username or password invalid' });
       }
-    }, 1000);
+    }, timeout);
   });
 }
 
 export function _getQuestions() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({ ...questions }), 1000);
+    setTimeout(() => res({ ...questions }), timeout);
   });
 }
 
@@ -160,7 +162,7 @@ export function _getQuestion(id) {
       } else {
         reject({ message: 'Question not found' });
       }
-    }, 1000);
+    }, timeout);
   });
 }
 
@@ -200,7 +202,7 @@ export function _saveQuestion(question) {
       };
 
       res(formattedQuestion);
-    }, 1000);
+    }, timeout);
   });
 }
 
@@ -230,6 +232,6 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
       };
 
       res();
-    }, 500);
+    }, timeout);
   });
 }
