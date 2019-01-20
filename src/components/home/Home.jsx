@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import PollPreviewList from './../shared/poll-preview-list/PollPreviewList';
 
 class Home extends Component {
-  state = {};
   render() {
     const polls = [
-      { id: '1', optionA: { text: 'lorem' }, optionB: { text: 'lorem' } },
-      { id: '2', optionA: { text: 'lorem' }, optionB: { text: 'lorem' } },
-      { id: '3', optionA: { text: 'lorem' }, optionB: { text: 'lorem' } },
-      { id: '4', optionA: { text: 'lorem' }, optionB: { text: 'lorem' } },
-      { id: '5', optionA: { text: 'lorem' }, optionB: { text: 'lorem' } }
+      { id: '1', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } },
+      { id: '2', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } },
+      { id: '3', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } },
+      { id: '4', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } },
+      { id: '5', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } }
     ];
     return (
       <div>
@@ -20,4 +20,11 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const stateToProps = state => ({});
+
+const dispatchToProps = dispatch => ({});
+
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(Home);
