@@ -1,14 +1,14 @@
 @import './../../styles/base';
 
 nav {
-  background-color: #4d4d4d;
+  background-color: $grey-dark;
   text-transform: uppercase;
   height: 70px;
   line-height: 70px;
 
   ul {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
     li {
       float: none;
@@ -17,11 +17,24 @@ nav {
     a {
       font-size: 1.4rem;
       padding: 0 1rem;
-      color: #dedede;
+      color: $grey-light-1;
+      overflow: hidden;
+      white-space: nowrap;
+
+      &.nav-link--user {
+        display: flex;
+        align-items: center;
+        text-transform: lowercase;
+        color: $red-main;
+
+        .material-icons {
+          margin-left: 0.5rem;
+        }
+      }
 
       &.active {
         background-color: rgba(0, 0, 0, 0.2);
-        color: #ef807e;
+        color: $red-main;
       }
     }
   }
