@@ -38,7 +38,7 @@ const login = (username, password) => dispatch => {
     });
 };
 
-const logout = dispatch => () => dispatch(AuthActionCreator.logout());
+const logout = () => dispatch => dispatch(AuthActionCreator.logout());
 
 export const AuthActionType = {
   LOGIN_SUCCESS,

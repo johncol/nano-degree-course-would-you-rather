@@ -14,21 +14,28 @@ nav {
       float: none;
     }
 
-    a {
+    .nav-link {
       font-size: 1.4rem;
       padding: 0 1rem;
       color: $grey-light-1;
       overflow: hidden;
       white-space: nowrap;
+      cursor: pointer;
+      transition: background-color 0.3s;
 
-      &.nav-link--user {
-        display: flex;
-        align-items: center;
+      &__username {
         text-transform: lowercase;
         color: $red-main;
+        margin-left: 1rem;
+      }
+
+      &--user {
+        display: flex;
+        align-items: center;
 
         .material-icons {
           margin-left: 0.5rem;
+          color: $red-main;
         }
       }
 
@@ -43,7 +50,7 @@ nav {
     ul {
       justify-content: flex-end;
 
-      a {
+      .nav-link {
         font-size: 1.6rem;
         padding: 0 2rem;
       }
