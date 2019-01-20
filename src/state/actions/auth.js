@@ -6,10 +6,10 @@ const LOGIN_FAIL = 'LOGIN_FAIL';
 const LOGOUT = 'LOGOUT';
 
 const AuthActionCreator = {
-  loginSuccess: username => ({
+  loginSuccess: user => ({
     type: LOGIN_SUCCESS,
     payload: {
-      username
+      user
     }
   }),
 
@@ -29,7 +29,7 @@ const login = (username, password) => dispatch => {
   dispatch(LoaderAction.showLoader());
   return API._login(username, password)
     .then(response => {
-      dispatch(AuthActionCreator.loginSuccess(response.user.id));
+      dispatch(AuthActionCreator.loginSuccess(response.user));
     })
     .catch(error => {
       dispatch(AuthActionCreator.loginFail(error.message));
