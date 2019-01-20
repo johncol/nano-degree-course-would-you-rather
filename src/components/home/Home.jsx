@@ -2,27 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import PollPreviewList from './../shared/poll-preview-list/PollPreviewList';
+import { QuestionAction } from '../../state/actions/questions';
 
 class Home extends Component {
+  componentDidMount() {
+    this.props.fetchAllQuestions();
+  }
+
   render() {
-    const polls = [
-      { id: '1', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } },
-      { id: '2', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } },
-      { id: '3', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } },
-      { id: '4', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } },
-      { id: '5', optionOne: { text: 'lorem' }, optionTwo: { text: 'lorem' } }
-    ];
+    const { questions } = this.props;
     return (
       <div>
-        <PollPreviewList polls={polls} title="Unanswered" />
+        <PollPreviewList polls={questions} title="All questions" />
       </div>
     );
   }
 }
 
-const stateToProps = state => ({});
+const stateToProps = state => {
+  const questions = Object.values(state.questions);
+  return {
+    questions
+  };
+};
 
-const dispatchToProps = dispatch => ({});
+const dispatchToProps = dispatch => ({
+  fetchAllQuestions: () => {
+    dispatch(QuestionAction.fetchAllQuestions());
+  }
+});
 
 export default connect(
   stateToProps,
