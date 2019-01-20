@@ -151,6 +151,19 @@ export function _getQuestions() {
   });
 }
 
+export function _getQuestion(id) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const question = questions[id];
+      if (question) {
+        resolve({ question });
+      } else {
+        reject({ message: 'Question not found' });
+      }
+    }, 1000);
+  });
+}
+
 function formatQuestion({ optionOneText, optionTwoText, author }) {
   return {
     id: generateUID(),
