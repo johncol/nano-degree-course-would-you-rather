@@ -8,6 +8,9 @@ const questionsReducer = (state = {}, action) => {
     case QuestionActionType.FETCH_QUESTIONS:
       return fetchQuestions(state, action);
 
+    case QuestionActionType.FETCH_ALL_QUESTIONS:
+      return fetchAllQuestions(state, action);
+
     default:
       return state;
   }
@@ -28,6 +31,10 @@ const fetchQuestions = (state, action) => {
     newState[question.id] = question;
   });
   return newState;
+};
+
+const fetchAllQuestions = (state, action) => {
+  return { ...action.payload };
 };
 
 export default questionsReducer;
