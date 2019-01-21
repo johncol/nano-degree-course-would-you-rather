@@ -12,8 +12,43 @@
 
   &__option {
     flex: 1;
-    padding: 1rem 1.5rem;
     font-size: 1.4rem;
-    text-align: center;
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+
+    &--one {
+      flex-direction: row;
+      border-right: 0.5rem solid $grey-dark;
+    }
+
+    &--two {
+      flex-direction: row-reverse;
+      border-left: 0.5rem solid $grey-dark;
+    }
+  }
+
+  &__text {
+    padding: 1rem 1.5rem;
+    flex: 1;
+  }
+
+  &__option--one &__text {
+    text-align: left;
+  }
+
+  &__option--two &__text {
+    text-align: right;
+  }
+
+  &__button {
+    border: none;
+    padding: 0 2rem;
+    transition: al 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: $red-main;
+    }
   }
 }
