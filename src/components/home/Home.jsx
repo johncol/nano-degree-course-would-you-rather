@@ -13,8 +13,16 @@ class Home extends Component {
     const { unansweredQuestions, answeredQuestions } = this.props;
     return (
       <div>
-        <QuestionPreviewList questions={unansweredQuestions} title="Unanswered questions" />
-        <QuestionPreviewList questions={answeredQuestions} title="Answered questions" />
+        <QuestionPreviewList
+          questions={unansweredQuestions}
+          title="Unanswered questions"
+          allowToAnswer={true}
+        />
+        <QuestionPreviewList
+          questions={answeredQuestions}
+          title="Answered questions"
+          allowToAnswer={false}
+        />
       </div>
     );
   }
@@ -24,8 +32,12 @@ const stateToProps = state => {
   const questions = Object.values(state.questions);
   const answers = Object.keys(state.auth.user.answers);
 
-  const unansweredQuestions = questions.filter(question => answers.indexOf(question.id) === -1);
-  const answeredQuestions = questions.filter(question => answers.indexOf(question.id) !== -1);
+  const unansweredQuestions = questions.filter(
+    question => answers.indexOf(question.id) === -1
+  );
+  const answeredQuestions = questions.filter(
+    question => answers.indexOf(question.id) !== -1
+  );
   return {
     unansweredQuestions,
     answeredQuestions

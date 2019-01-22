@@ -12,22 +12,23 @@ const QuestionButton = () => (
   </button>
 );
 
-const QuestionOption = ({ option, text }) => {
+const QuestionOption = ({ option, text, allowToAnswer }) => {
   const optionClassName = 'question-preview__option--' + (option === 1 ? 'one' : 'two');
   return (
     <section className={'question-preview__option ' + optionClassName}>
-      <QuestionButton />
+      {allowToAnswer && <QuestionButton />}
       <QuestionText text={text} />
     </section>
   );
 };
 
 const QuestionPreview = props => {
+  const { allowToAnswer } = props;
   const { optionOne, optionTwo } = props.question;
   return (
     <article className="question-preview">
-      <QuestionOption option={1} text={optionOne.text} />
-      <QuestionOption option={2} text={optionTwo.text} />
+      <QuestionOption option={1} text={optionOne.text} allowToAnswer={allowToAnswer} />
+      <QuestionOption option={2} text={optionTwo.text} allowToAnswer={allowToAnswer} />
     </article>
   );
 };
