@@ -9,7 +9,13 @@
     text-transform: uppercase;
     text-align: center;
     color: #5f5f5fa8;
-    font-size: 30px;
+    font-size: 2rem;
+    margin: 3rem 0;
+
+    @media screen and (min-width: $breakpoint-sm) {
+      font-size: 3rem;
+      margin: 4rem 0;
+    }
   }
 
   ul {
