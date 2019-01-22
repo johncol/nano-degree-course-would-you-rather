@@ -8,7 +8,7 @@ const QuestionText = ({ text }) => (
 
 const QuestionButton = () => (
   <button className="question-preview__button content--grey">
-    <i class="material-icons">check</i>
+    <i className="material-icons">check</i>
   </button>
 );
 
