@@ -12,7 +12,6 @@
 
   &__option {
     flex: 1;
-    font-size: 1.4rem;
     padding: 0;
     display: flex;
     align-items: stretch;
@@ -29,16 +28,26 @@
   }
 
   &__text {
-    padding: 1rem 1.5rem;
     flex: 1;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    padding: 1rem 1.5rem;
+
+    @media screen and (min-width: $breakpoint-sm) {
+      font-size: 1.7rem;
+      padding: 1.2rem 1.7rem;
+    }
   }
 
   &__option--one &__text {
     text-align: left;
+    flex-direction: row;
   }
 
   &__option--two &__text {
     text-align: right;
+    flex-direction: row-reverse;
   }
 
   &__button {
