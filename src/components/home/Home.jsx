@@ -1,28 +1,67 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import QuestionPreviewList from './../shared/question-preview-list/QuestionPreviewList';
 import { QuestionAction } from '../../state/actions/questions';
+import QuestionPreviewList from './../shared/question-preview-list/QuestionPreviewList';
+import ListsToggle from './lists-toggle/ListsToggle';
 
 class Home extends Component {
+  state = {
+    unanswerdListVisible: true,
+    answerdListVisible: true
+  };
+
+  showBothLists = () => {
+    this.setState({
+      unanswerdListVisible: true,
+      answerdListVisible: true
+    });
+  };
+
+  showUnansweredList = () => {
+    this.setState({
+      unanswerdListVisible: true,
+      answerdListVisible: false
+    });
+  };
+
+  showAnsweredList = () => {
+    this.setState({
+      unanswerdListVisible: false,
+      answerdListVisible: true
+    });
+  };
+
   componentDidMount() {
     this.props.fetchAllQuestions();
   }
 
   render() {
     const { unansweredQuestions, answeredQuestions } = this.props;
+    const { unanswerdListVisible, answerdListVisible } = this.state;
     return (
       <div>
-        <QuestionPreviewList
-          questions={unansweredQuestions}
-          title="Unanswered questions"
-          allowToAnswer={true}
+        <ListsToggle
+          showBothLists={this.showBothLists}
+          showUnansweredList={this.showUnansweredList}
+          showAnsweredList={this.showAnsweredList}
+          unanswerdListVisible={unanswerdListVisible}
+          answerdListVisible={answerdListVisible}
         />
-        <QuestionPreviewList
-          questions={answeredQuestions}
-          title="Answered questions"
-          allowToAnswer={false}
-        />
+        {unanswerdListVisible && (
+          <QuestionPreviewList
+            questions={unansweredQuestions}
+            title="Unanswered questions"
+            allowToAnswer={true}
+          />
+        )}
+        {answerdListVisible && (
+          <QuestionPreviewList
+            questions={answeredQuestions}
+            title="Answered questions"
+            allowToAnswer={false}
+          />
+        )}
       </div>
     );
   }
