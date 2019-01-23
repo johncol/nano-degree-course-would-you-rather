@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Login from './login/Login';
 import Navigation from './navigation/Navigation';
 import Home from './home/Home';
+import AddQuestion from './add-question/AddQuestion';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Navigation />
           <div>
             <Route exact path="/" component={Home} />
+            <Route exact path="/add-question" component={AddQuestion} />
           </div>
         </div>
       </BrowserRouter>
