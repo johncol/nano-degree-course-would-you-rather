@@ -2,8 +2,8 @@ import { QuestionActionType } from '../actions/questions';
 
 const questionsReducer = (state = {}, action) => {
   switch (action.type) {
-    case QuestionActionType.FETCH_ALL_QUESTIONS:
-      return fetchAllQuestions(state, action);
+    case QuestionActionType.SAVE_ALL_QUESTIONS:
+      return saveAllQuestions(state, action);
 
     case QuestionActionType.ADD_QUESTION:
       return addQuestion(state, action);
@@ -13,7 +13,7 @@ const questionsReducer = (state = {}, action) => {
   }
 };
 
-const fetchAllQuestions = (state, action) => {
+const saveAllQuestions = (state, action) => {
   return { ...action.payload };
 };
 

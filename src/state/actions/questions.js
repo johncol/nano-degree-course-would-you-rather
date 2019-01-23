@@ -1,12 +1,12 @@
 import * as API from './../../api/_DATA';
 import { LoaderAction } from './loader';
 
-const FETCH_ALL_QUESTIONS = 'FETCH_ALL_QUESTIONS';
+const SAVE_ALL_QUESTIONS = 'SAVE_ALL_QUESTIONS';
 const ADD_QUESTION = 'ADD_QUESTION';
 
 const QuestionActionCreator = {
-  fetchAllQuestions: questions => ({
-    type: FETCH_ALL_QUESTIONS,
+  saveAllQuestions: questions => ({
+    type: SAVE_ALL_QUESTIONS,
     payload: questions
   }),
 
@@ -21,7 +21,7 @@ const fetchAllQuestions = () => dispatch => {
   return API._getQuestions()
     .then(questions => {
       dispatch(LoaderAction.hideLoader());
-      dispatch(QuestionActionCreator.fetchAllQuestions(questions));
+      dispatch(QuestionActionCreator.saveAllQuestions(questions));
     })
     .catch(error => {
       dispatch(LoaderAction.hideLoader());
@@ -44,7 +44,7 @@ const addQuestion = questionInfo => dispatch => {
 };
 
 export const QuestionActionType = {
-  FETCH_ALL_QUESTIONS,
+  SAVE_ALL_QUESTIONS,
   ADD_QUESTION
 };
 
