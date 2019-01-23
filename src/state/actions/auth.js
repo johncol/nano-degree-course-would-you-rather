@@ -1,23 +1,20 @@
 import * as API from './../../api/_DATA';
 import { LoaderAction } from './loader';
+import { UserAction } from './users';
 
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAIL = 'LOGIN_FAIL';
 const LOGOUT = 'LOGOUT';
 
 const AuthActionCreator = {
-  loginSuccess: user => ({
+  loginSuccess: username => ({
     type: LOGIN_SUCCESS,
-    payload: {
-      user
-    }
+    payload: username
   }),
 
   loginFail: error => ({
     type: LOGIN_FAIL,
-    payload: {
-      error
-    }
+    payload: error
   }),
 
   logout: () => ({
@@ -30,7 +27,8 @@ const login = (username, password) => dispatch => {
   return API._login(username, password)
     .then(response => {
       dispatch(LoaderAction.hideLoader());
-      dispatch(AuthActionCreator.loginSuccess(response.user));
+      dispatch(UserAction.saveUser(response.user));
+      dispatch(AuthActionCreator.loginSuccess(response.user.id));
     })
     .catch(error => {
       dispatch(LoaderAction.hideLoader());

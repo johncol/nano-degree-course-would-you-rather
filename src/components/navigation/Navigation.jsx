@@ -40,7 +40,7 @@ class Navigation extends Component {
 }
 
 const stateToProps = state => ({
-  username: state.auth.user.id
+  username: state.auth.username
 });
 
 const dispatchToProps = dispatch => ({

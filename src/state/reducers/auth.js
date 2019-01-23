@@ -17,17 +17,17 @@ const authReducer = (state = {}, action) => {
 };
 
 const loginSuccess = (state, action) => {
-  const { user } = action.payload;
+  const username = action.payload;
   const time = Date.now();
   return {
     logged: true,
-    user,
+    username,
     time
   };
 };
 
 const loginFail = (state, action) => {
-  const { error } = action.payload;
+  const error = action.payload;
   return {
     logged: false,
     error

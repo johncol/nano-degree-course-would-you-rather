@@ -69,7 +69,9 @@ class Home extends Component {
 
 const stateToProps = state => {
   const questions = Object.values(state.questions);
-  const answers = Object.keys(state.auth.user.answers);
+  const { username } = state.auth;
+  const user = state.users[username];
+  const answers = Object.keys(user.answers);
 
   const unansweredQuestions = questions.filter(
     question => answers.indexOf(question.id) === -1
