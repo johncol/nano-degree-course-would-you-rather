@@ -18,8 +18,8 @@ class Navigation extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink className="nav-link" to="/new-poll">
-              New poll
+            <NavLink className="nav-link" to="/add-question">
+              Add question
             </NavLink>
           </li>
           <li>
