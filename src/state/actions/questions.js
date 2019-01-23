@@ -4,6 +4,7 @@ import { LoaderAction } from './loader';
 const FETCH_QUESTION = 'FETCH_QUESTION';
 const FETCH_QUESTIONS = 'FETCH_QUESTIONS';
 const FETCH_ALL_QUESTIONS = 'FETCH_ALL_QUESTIONS';
+const ADD_QUESTION = 'ADD_QUESTION';
 
 const QuestionActionCreator = {
   fetchQuestion: question => ({
@@ -19,6 +20,11 @@ const QuestionActionCreator = {
   fetchAllQuestions: questions => ({
     type: FETCH_ALL_QUESTIONS,
     payload: questions
+  }),
+
+  addQuestion: question => ({
+    type: ADD_QUESTION,
+    payload: question
   })
 };
 
@@ -64,14 +70,30 @@ const fetchAllQuestions = () => dispatch => {
     });
 };
 
+const addQuestion = questionInfo => dispatch => {
+  dispatch(LoaderAction.showLoader());
+
+  return API._saveQuestion(questionInfo)
+    .then(question => {
+      dispatch(LoaderAction.hideLoader());
+      dispatch(QuestionActionCreator.addQuestion(question));
+    })
+    .catch(error => {
+      dispatch(LoaderAction.hideLoader());
+      console.warn('Error fetching all questions:', error);
+    });
+};
+
 export const QuestionActionType = {
   FETCH_QUESTION,
   FETCH_QUESTIONS,
-  FETCH_ALL_QUESTIONS
+  FETCH_ALL_QUESTIONS,
+  ADD_QUESTION
 };
 
 export const QuestionAction = {
   fetchQuestion,
   fetchQuestions,
-  fetchAllQuestions
+  fetchAllQuestions,
+  addQuestion
 };
