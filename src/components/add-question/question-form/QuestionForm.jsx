@@ -22,7 +22,9 @@ class QuestionForm extends Component {
     const field = event.target.name;
     const value = event.target.value;
     this.setState({
-      [field]: value
+      [field]: value,
+      focusOne: field === 'optionOne',
+      focusTwo: field === 'optionTwo'
     });
   };
 
