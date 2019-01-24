@@ -6,7 +6,16 @@ import QuestionOption from './../question-option/QuestionOption';
 class QuestionForm extends Component {
   state = {
     optionOne: '',
-    optionTwo: ''
+    optionTwo: '',
+    focusOne: true,
+    focusTwo: false
+  };
+
+  giveFocusToOptionTwo = () => {
+    this.setState({
+      focusOne: false,
+      focusTwo: true
+    });
   };
 
   updateOptionValue = event => {
@@ -19,14 +28,19 @@ class QuestionForm extends Component {
 
   render() {
     const { addQuestion } = this.props;
-    const { optionOne, optionTwo } = this.state;
+    const { optionOne, optionTwo, focusOne, focusTwo } = this.state;
     return (
-      <form onSubmit={event => addQuestion(event, this.state)} autoComplete="off">
+      <form
+        onSubmit={event => addQuestion(event, this.state)}
+        autoComplete="off"
+      >
         <QuestionOption
           name="optionOne"
           placeholder="this"
           value={optionOne}
           updateValue={this.updateOptionValue}
+          handleEnter={this.giveFocusToOptionTwo}
+          focused={focusOne}
         />
 
         <span className="add-question__option-separator">Or</span>
@@ -36,6 +50,7 @@ class QuestionForm extends Component {
           placeholder="that"
           value={optionTwo}
           updateValue={this.updateOptionValue}
+          focused={focusTwo}
         />
 
         <Button className="add-question__button">Add</Button>
