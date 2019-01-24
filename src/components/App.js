@@ -6,8 +6,13 @@ import Login from './login/Login';
 import Navigation from './navigation/Navigation';
 import Home from './home/Home';
 import AddQuestion from './add-question/AddQuestion';
+import { QuestionAction } from '../state/actions/questions';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchAllQuestions();
+  }
+
   render() {
     const { auth } = this.props;
     if (!auth.logged) {
@@ -32,4 +37,13 @@ const stateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(stateToProps)(App);
+const dispatchToProps = dispatch => ({
+  fetchAllQuestions: () => {
+    dispatch(QuestionAction.fetchAllQuestions());
+  }
+});
+
+export default connect(
+  stateToProps,
+  dispatchToProps
+)(App);

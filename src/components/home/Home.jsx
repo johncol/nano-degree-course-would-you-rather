@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { QuestionAction } from '../../state/actions/questions';
 import QuestionPreviewList from './../shared/question-preview-list/QuestionPreviewList';
 import ListsToggle from './lists-toggle/ListsToggle';
 
@@ -31,10 +30,6 @@ class Home extends Component {
       answerdListVisible: true
     });
   };
-
-  componentDidMount() {
-    this.props.fetchAllQuestions();
-  }
 
   render() {
     const { unansweredQuestions, answeredQuestions } = this.props;
@@ -85,11 +80,7 @@ const stateToProps = state => {
   };
 };
 
-const dispatchToProps = dispatch => ({
-  fetchAllQuestions: () => {
-    dispatch(QuestionAction.fetchAllQuestions());
-  }
-});
+const dispatchToProps = dispatch => ({});
 
 export default connect(
   stateToProps,
