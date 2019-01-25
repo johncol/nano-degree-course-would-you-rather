@@ -20,7 +20,7 @@ class App extends Component {
     }
 
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/nano-degree-would-you-rather/">
         <div className="main-container">
           <Navigation />
           <div>
