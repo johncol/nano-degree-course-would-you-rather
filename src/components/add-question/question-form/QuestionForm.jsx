@@ -28,14 +28,28 @@ class QuestionForm extends Component {
     });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    if (this.bothOptionsWereFilled()) {
+      const { optionOne, optionTwo } = this.state;
+      this.props.addQuestion({
+        optionOne,
+        optionTwo
+      });
+    }
+  };
+
+  bothOptionsWereFilled = () => {
+    const { optionOne, optionTwo } = this.state;
+    const optionOneNonEmpty = optionOne.trim() !== '';
+    const optionTwoNonEmpty = optionTwo.trim() !== '';
+    return optionOneNonEmpty && optionTwoNonEmpty;
+  };
+
   render() {
-    const { addQuestion } = this.props;
     const { optionOne, optionTwo, focusOne, focusTwo } = this.state;
     return (
-      <form
-        onSubmit={event => addQuestion(event, this.state)}
-        autoComplete="off"
-      >
+      <form onSubmit={this.handleSubmit} autoComplete="off">
         <QuestionOption
           name="optionOne"
           placeholder="this"
@@ -55,7 +69,9 @@ class QuestionForm extends Component {
           focused={focusTwo}
         />
 
-        <Button className="add-question__button">Add</Button>
+        <Button className="add-question__button" disabled={!this.bothOptionsWereFilled()}>
+          Add
+        </Button>
       </form>
     );
   }

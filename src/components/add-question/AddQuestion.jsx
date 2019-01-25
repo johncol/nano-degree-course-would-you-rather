@@ -8,8 +8,7 @@ import { QuestionAction } from '../../state/actions/questions';
 import './add-question.scss';
 
 class AddQuestion extends Component {
-  addQuestion = (event, question) => {
-    event.preventDefault();
+  addQuestion = question => {
     const { username, addQuestion, history } = this.props;
     addQuestion(question.optionOne, question.optionTwo, username);
     history.push('/');
