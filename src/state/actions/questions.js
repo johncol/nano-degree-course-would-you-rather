@@ -1,5 +1,6 @@
 import * as API from './../../api/_DATA';
 import { LoaderAction } from './loader';
+import { UserAction } from './users';
 
 const SAVE_ALL_QUESTIONS = 'SAVE_ALL_QUESTIONS';
 const ADD_QUESTION = 'ADD_QUESTION';
@@ -36,6 +37,7 @@ const addQuestion = questionInfo => dispatch => {
     .then(question => {
       dispatch(LoaderAction.hideLoader());
       dispatch(QuestionActionCreator.addQuestion(question));
+      dispatch(UserAction.saveUserQuestion(question.author, question.id));
     })
     .catch(error => {
       dispatch(LoaderAction.hideLoader());

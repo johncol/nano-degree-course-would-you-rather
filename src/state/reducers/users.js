@@ -5,6 +5,9 @@ const usersReducer = (state = {}, action) => {
     case UserActionType.SAVE_USER:
       return saveUser(state, action);
 
+    case UserActionType.SAVE_USER_QUESTION:
+      return saveUserQuestion(state, action);
+
     default:
       return state;
   }
@@ -15,6 +18,19 @@ const saveUser = (state, action) => {
   return {
     ...state,
     [user.id]: user
+  };
+};
+
+const saveUserQuestion = (state, action) => {
+  const { username, questionId } = action.payload;
+  const user = state[username];
+  const questions = [...user.questions, questionId];
+  return {
+    ...state,
+    [user.id]: {
+      ...user,
+      questions
+    }
   };
 };
 
