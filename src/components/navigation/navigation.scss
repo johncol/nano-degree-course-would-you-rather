@@ -1,20 +1,49 @@
 @import './../../styles/base';
 
-nav {
+.nav {
   background-color: $grey-dark;
   text-transform: uppercase;
-  height: 70px;
-  line-height: 70px;
+  height: auto;
+
+  * {
+    user-select: none;
+  }
+
+  @media screen and (min-width: $breakpoint-sm) {
+    height: 70px;
+    line-height: 70px;
+  }
+
+  &__toggle {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: $red-main;
+    }
+
+    @media screen and (min-width: $breakpoint-sm) {
+      display: none !important;
+    }
+  }
 
   ul {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+
+    @media screen and (min-width: $breakpoint-sm) {
+      flex-direction: row;
+    }
 
     li {
       float: none;
     }
 
-    .nav-link {
+    .nav__link {
       font-size: 1.4rem;
       padding: 0 1rem;
       color: $grey-light-1;
@@ -46,11 +75,17 @@ nav {
     }
   }
 
+  &:not(&--toggle-visible) .nav__link:not(.active) {
+    @media screen and (max-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+
   @media screen and (min-width: $breakpoint-sm) {
     ul {
       justify-content: flex-end;
 
-      .nav-link {
+      .nav__link {
         font-size: 1.6rem;
         padding: 0 2rem;
       }
