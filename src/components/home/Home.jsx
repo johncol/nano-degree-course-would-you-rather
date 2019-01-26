@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import QuestionPreviewList from './../shared/question-preview-list/QuestionPreviewList';
+import QuestionPreviewList from './question-preview-list/QuestionPreviewList';
 import ListsToggle from './lists-toggle/ListsToggle';
 
 class Home extends Component {
