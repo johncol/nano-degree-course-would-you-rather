@@ -14,6 +14,9 @@ const usersReducer = (state = {}, action) => {
     case UserActionType.UNSAVE_USER_ANSWER:
       return unsaveUserAnswer(state, action);
 
+    case UserActionType.SAVE_ALL_USERS:
+      return saveAllUsers(state, action);
+
     default:
       return state;
   }
@@ -65,6 +68,10 @@ const unsaveUserAnswer = (state, action) => {
       answers
     }
   };
+};
+
+const saveAllUsers = (state, action) => {
+  return { ...action.payload };
 };
 
 export default usersReducer;
