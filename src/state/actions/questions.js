@@ -5,6 +5,7 @@ import { UserAction } from './users';
 const SAVE_ALL_QUESTIONS = 'SAVE_ALL_QUESTIONS';
 const ADD_QUESTION = 'ADD_QUESTION';
 const ANSWER_QUESTION = 'ANSWER_QUESTION';
+const UNANSWER_QUESTION = 'UNANSWER_QUESTION';
 
 const QuestionActionCreator = {
   saveAllQuestions: questions => ({
@@ -19,6 +20,15 @@ const QuestionActionCreator = {
 
   answerQuestion: (username, questionId, option) => ({
     type: ANSWER_QUESTION,
+    payload: {
+      username,
+      questionId,
+      option
+    }
+  }),
+
+  unanswerQuestion: (username, questionId, option) => ({
+    type: UNANSWER_QUESTION,
     payload: {
       username,
       questionId,
@@ -56,30 +66,26 @@ const addQuestion = questionInfo => dispatch => {
 };
 
 const answerQuestion = (username, questionId, option) => dispatch => {
-  // TODO optimistic update
-  dispatch(LoaderAction.showLoader());
+  dispatch(QuestionActionCreator.answerQuestion(username, questionId, option));
+  dispatch(UserAction.saveUserAnswer(username, questionId, option));
 
   const answerPayload = {
     authedUser: username,
     qid: questionId,
     answer: option
   };
-  return API._saveQuestionAnswer(answerPayload)
-    .then(() => {
-      dispatch(LoaderAction.hideLoader());
-      dispatch(QuestionActionCreator.answerQuestion(username, questionId, option));
-      dispatch(UserAction.saveUserAnswer(username, questionId, option));
-    })
-    .catch(error => {
-      dispatch(LoaderAction.hideLoader());
-      console.warn('Error answering question:', username, questionId, option, error);
-    });
+  return API._saveQuestionAnswer(answerPayload).catch(() => {
+    dispatch(QuestionActionCreator.unanswerQuestion(username, questionId, option));
+    dispatch(UserAction.unsaveUserAnswer(username, questionId));
+    alert('An error occured in the server, the question could not be saved');
+  });
 };
 
 export const QuestionActionType = {
   SAVE_ALL_QUESTIONS,
   ADD_QUESTION,
-  ANSWER_QUESTION
+  ANSWER_QUESTION,
+  UNANSWER_QUESTION
 };
 
 export const QuestionAction = {

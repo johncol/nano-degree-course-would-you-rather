@@ -11,6 +11,9 @@ const questionsReducer = (state = {}, action) => {
     case QuestionActionType.ANSWER_QUESTION:
       return answerQuestion(state, action);
 
+    case QuestionActionType.UNANSWER_QUESTION:
+      return unanswerQuestion(state, action);
+
     default:
       return state;
   }
@@ -34,6 +37,25 @@ const answerQuestion = (state, action) => {
   const question = state[questionId];
   const selectedOption = question[option];
   const votes = [...selectedOption.votes, username];
+
+  return {
+    ...state,
+    [questionId]: {
+      ...question,
+      [option]: {
+        ...selectedOption,
+        votes
+      }
+    }
+  };
+};
+
+const unanswerQuestion = (state, action) => {
+  const { username, questionId, option } = action.payload;
+
+  const question = state[questionId];
+  const selectedOption = question[option];
+  const votes = selectedOption.votes.filter(vote => vote !== username);
 
   return {
     ...state,

@@ -11,6 +11,9 @@ const usersReducer = (state = {}, action) => {
     case UserActionType.SAVE_USER_ANSWER:
       return saveUserAnswer(state, action);
 
+    case UserActionType.UNSAVE_USER_ANSWER:
+      return unsaveUserAnswer(state, action);
+
     default:
       return state;
   }
@@ -41,6 +44,20 @@ const saveUserAnswer = (state, action) => {
   const { username, questionId, option } = action.payload;
   const user = state[username];
   const answers = { ...user.answers, [questionId]: option };
+  return {
+    ...state,
+    [user.id]: {
+      ...user,
+      answers
+    }
+  };
+};
+
+const unsaveUserAnswer = (state, action) => {
+  const { username, questionId } = action.payload;
+  const user = state[username];
+  const answers = { ...user.answers };
+  delete answers[questionId];
   return {
     ...state,
     [user.id]: {
