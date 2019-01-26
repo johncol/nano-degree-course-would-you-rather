@@ -5,9 +5,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Login from './login/Login';
 import Navigation from './navigation/Navigation';
 import Home from './home/Home';
+import AddQuestion from './add-question/AddQuestion';
 import Leaderboard from './leaderboard/Leaderboard';
 
-import AddQuestion from './add-question/AddQuestion';
 import { QuestionAction } from '../state/actions/questions';
 
 class App extends Component {
