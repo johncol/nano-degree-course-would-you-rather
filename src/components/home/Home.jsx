@@ -62,18 +62,23 @@ class Home extends Component {
   }
 }
 
+const sortDescByTimestamp = (question1, question2) => {
+  return question2.timestamp - question1.timestamp;
+};
+
 const stateToProps = state => {
   const questions = Object.values(state.questions);
   const { username } = state.auth;
   const user = state.users[username];
   const answers = Object.keys(user.answers);
 
-  const unansweredQuestions = questions.filter(
-    question => answers.indexOf(question.id) === -1
-  );
-  const answeredQuestions = questions.filter(
-    question => answers.indexOf(question.id) !== -1
-  );
+  const unansweredQuestions = questions
+    .filter(question => answers.indexOf(question.id) === -1)
+    .sort(sortDescByTimestamp);
+  const answeredQuestions = questions
+    .filter(question => answers.indexOf(question.id) !== -1)
+    .sort(sortDescByTimestamp);
+
   return {
     unansweredQuestions,
     answeredQuestions
