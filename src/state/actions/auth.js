@@ -1,6 +1,6 @@
 import * as API from './../../api/_DATA';
 import { LoaderAction } from './loader';
-import { UserAction } from './users';
+import { UserActionCreator } from './users';
 
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAIL = 'LOGIN_FAIL';
@@ -27,7 +27,7 @@ const login = (username, password) => dispatch => {
   return API._login(username, password)
     .then(response => {
       dispatch(LoaderAction.hideLoader());
-      dispatch(UserAction.saveUser(response.user));
+      dispatch(UserActionCreator.saveUser(response.user));
       dispatch(AuthActionCreator.loginSuccess(response.user.id));
     })
     .catch(error => {

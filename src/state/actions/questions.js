@@ -1,6 +1,6 @@
 import * as API from './../../api/_DATA';
 import { LoaderAction } from './loader';
-import { UserAction } from './users';
+import { UserActionCreator } from './users';
 
 const SAVE_ALL_QUESTIONS = 'SAVE_ALL_QUESTIONS';
 const ADD_QUESTION = 'ADD_QUESTION';
@@ -57,7 +57,7 @@ const addQuestion = questionInfo => dispatch => {
     .then(question => {
       dispatch(LoaderAction.hideLoader());
       dispatch(QuestionActionCreator.addQuestion(question));
-      dispatch(UserAction.saveUserQuestion(question.author, question.id));
+      dispatch(UserActionCreator.saveUserQuestion(question.author, question.id));
     })
     .catch(error => {
       dispatch(LoaderAction.hideLoader());
@@ -67,7 +67,7 @@ const addQuestion = questionInfo => dispatch => {
 
 const answerQuestion = (username, questionId, option) => dispatch => {
   dispatch(QuestionActionCreator.answerQuestion(username, questionId, option));
-  dispatch(UserAction.saveUserAnswer(username, questionId, option));
+  dispatch(UserActionCreator.saveUserAnswer(username, questionId, option));
 
   const answerPayload = {
     authedUser: username,
@@ -76,7 +76,7 @@ const answerQuestion = (username, questionId, option) => dispatch => {
   };
   return API._saveQuestionAnswer(answerPayload).catch(() => {
     dispatch(QuestionActionCreator.unanswerQuestion(username, questionId, option));
-    dispatch(UserAction.unsaveUserAnswer(username, questionId));
+    dispatch(UserActionCreator.unsaveUserAnswer(username, questionId));
     alert('An error occured in the server, the question could not be saved');
   });
 };
