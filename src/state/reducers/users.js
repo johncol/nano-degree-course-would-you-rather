@@ -32,7 +32,7 @@ const saveUser = (state, action) => {
   return {
     ...state,
     list: {
-      ...state.users,
+      ...state.list,
       [user.id]: user
     }
   };
@@ -45,7 +45,7 @@ const saveUserQuestion = (state, action) => {
   return {
     ...state,
     list: {
-      ...state.users,
+      ...state.list,
       [user.id]: {
         ...user,
         questions
@@ -61,7 +61,7 @@ const saveUserAnswer = (state, action) => {
   return {
     ...state,
     list: {
-      ...state.users,
+      ...state.list,
       [user.id]: {
         ...user,
         answers
@@ -78,7 +78,7 @@ const unsaveUserAnswer = (state, action) => {
   return {
     ...state,
     list: {
-      ...state.users,
+      ...state.list,
       [user.id]: {
         ...user,
         answers
