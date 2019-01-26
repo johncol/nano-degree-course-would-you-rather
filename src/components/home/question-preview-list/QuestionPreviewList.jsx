@@ -27,7 +27,7 @@ const stateToProps = (state, props) => ({
   loading: state.loader
 });
 
-const dispatchToProps = state => ({});
+const dispatchToProps = dispatch => ({});
 
 export default connect(
   stateToProps,
