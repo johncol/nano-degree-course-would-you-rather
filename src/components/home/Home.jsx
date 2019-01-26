@@ -46,15 +46,17 @@ class Home extends Component {
         {unanswerdListVisible && (
           <QuestionPreviewList
             questions={unansweredQuestions}
-            title="Unanswered questions"
             allowToAnswer={true}
+            title="Unanswered questions"
+            zeroItemsMessage="Create a new question using the option in the upper menu"
           />
         )}
         {answerdListVisible && (
           <QuestionPreviewList
             questions={answeredQuestions}
-            title="Answered questions"
             allowToAnswer={false}
+            title="Answered questions"
+            zeroItemsMessage="You haven't answered any question yet"
           />
         )}
       </div>
