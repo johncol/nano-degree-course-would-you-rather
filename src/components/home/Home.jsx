@@ -71,7 +71,7 @@ const sortDescByTimestamp = (question1, question2) => {
 const stateToProps = state => {
   const questions = Object.values(state.questions);
   const { username } = state.auth;
-  const user = state.users[username];
+  const user = state.users.list[username];
   const answers = Object.keys(user.answers);
 
   const unansweredQuestions = questions

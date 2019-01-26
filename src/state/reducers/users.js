@@ -1,6 +1,11 @@
 import { UserActionType } from '../actions/users';
 
-const usersReducer = (state = {}, action) => {
+const initialUsersState = {
+  allUsersRequested: false,
+  list: {}
+};
+
+const usersReducer = (state = initialUsersState, action) => {
   switch (action.type) {
     case UserActionType.SAVE_USER:
       return saveUser(state, action);
@@ -26,52 +31,69 @@ const saveUser = (state, action) => {
   const user = action.payload;
   return {
     ...state,
-    [user.id]: user
+    list: {
+      ...state.users,
+      [user.id]: user
+    }
   };
 };
 
 const saveUserQuestion = (state, action) => {
   const { username, questionId } = action.payload;
-  const user = state[username];
+  const user = state.list[username];
   const questions = [...user.questions, questionId];
   return {
     ...state,
-    [user.id]: {
-      ...user,
-      questions
+    list: {
+      ...state.users,
+      [user.id]: {
+        ...user,
+        questions
+      }
     }
   };
 };
 
 const saveUserAnswer = (state, action) => {
   const { username, questionId, option } = action.payload;
-  const user = state[username];
+  const user = state.list[username];
   const answers = { ...user.answers, [questionId]: option };
   return {
     ...state,
-    [user.id]: {
-      ...user,
-      answers
+    list: {
+      ...state.users,
+      [user.id]: {
+        ...user,
+        answers
+      }
     }
   };
 };
 
 const unsaveUserAnswer = (state, action) => {
   const { username, questionId } = action.payload;
-  const user = state[username];
+  const user = state.list[username];
   const answers = { ...user.answers };
   delete answers[questionId];
   return {
     ...state,
-    [user.id]: {
-      ...user,
-      answers
+    list: {
+      ...state.users,
+      [user.id]: {
+        ...user,
+        answers
+      }
     }
   };
 };
 
 const saveAllUsers = (state, action) => {
-  return { ...action.payload };
+  return {
+    allUsersRequested: true,
+    list: {
+      ...action.payload
+    }
+  };
 };
 
 export default usersReducer;
