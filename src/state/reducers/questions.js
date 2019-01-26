@@ -8,6 +8,9 @@ const questionsReducer = (state = {}, action) => {
     case QuestionActionType.ADD_QUESTION:
       return addQuestion(state, action);
 
+    case QuestionActionType.ANSWER_QUESTION:
+      return answerQuestion(state, action);
+
     default:
       return state;
   }
@@ -22,6 +25,25 @@ const addQuestion = (state, action) => {
   return {
     ...state,
     [question.id]: question
+  };
+};
+
+const answerQuestion = (state, action) => {
+  const { username, questionId, option } = action.payload;
+
+  const question = state[questionId];
+  const selectedOption = question[option];
+  const votes = [...selectedOption.votes, username];
+
+  return {
+    ...state,
+    [questionId]: {
+      ...question,
+      [option]: {
+        ...selectedOption,
+        votes
+      }
+    }
   };
 };
 

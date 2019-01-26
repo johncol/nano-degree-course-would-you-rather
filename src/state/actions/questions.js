@@ -4,6 +4,7 @@ import { UserAction } from './users';
 
 const SAVE_ALL_QUESTIONS = 'SAVE_ALL_QUESTIONS';
 const ADD_QUESTION = 'ADD_QUESTION';
+const ANSWER_QUESTION = 'ANSWER_QUESTION';
 
 const QuestionActionCreator = {
   saveAllQuestions: questions => ({
@@ -14,6 +15,15 @@ const QuestionActionCreator = {
   addQuestion: question => ({
     type: ADD_QUESTION,
     payload: question
+  }),
+
+  answerQuestion: (username, questionId, option) => ({
+    type: ANSWER_QUESTION,
+    payload: {
+      username,
+      questionId,
+      option
+    }
   })
 };
 
@@ -45,12 +55,35 @@ const addQuestion = questionInfo => dispatch => {
     });
 };
 
+const answerQuestion = (username, questionId, option) => dispatch => {
+  // TODO optimistic update
+  dispatch(LoaderAction.showLoader());
+
+  const answerPayload = {
+    authedUser: username,
+    qid: questionId,
+    answer: option
+  };
+  return API._saveQuestionAnswer(answerPayload)
+    .then(() => {
+      dispatch(LoaderAction.hideLoader());
+      dispatch(QuestionActionCreator.answerQuestion(username, questionId, option));
+      dispatch(UserAction.saveUserAnswer(username, questionId, option));
+    })
+    .catch(error => {
+      dispatch(LoaderAction.hideLoader());
+      console.warn('Error answering question:', username, questionId, option, error);
+    });
+};
+
 export const QuestionActionType = {
   SAVE_ALL_QUESTIONS,
-  ADD_QUESTION
+  ADD_QUESTION,
+  ANSWER_QUESTION
 };
 
 export const QuestionAction = {
   fetchAllQuestions,
-  addQuestion
+  addQuestion,
+  answerQuestion
 };

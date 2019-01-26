@@ -1,10 +1,6 @@
 const SAVE_USER = 'SAVE_USER';
 const SAVE_USER_QUESTION = 'SAVE_USER_QUESTION';
-
-export const UserActionType = {
-  SAVE_USER,
-  SAVE_USER_QUESTION
-};
+const SAVE_USER_ANSWER = 'SAVE_USER_ANSWER';
 
 const UserActionCreator = {
   saveUser: user => ({
@@ -18,6 +14,15 @@ const UserActionCreator = {
       username,
       questionId
     }
+  }),
+
+  saveUserAnswer: (username, questionId, option) => ({
+    type: SAVE_USER_ANSWER,
+    payload: {
+      username,
+      questionId,
+      option
+    }
   })
 };
 
@@ -29,7 +34,18 @@ const saveUserQuestion = (username, questionId) => dispatch => {
   return dispatch(UserActionCreator.saveUserQuestion(username, questionId));
 };
 
+const saveUserAnswer = (username, questionId, option) => dispatch => {
+  return dispatch(UserActionCreator.saveUserAnswer(username, questionId, option));
+};
+
+export const UserActionType = {
+  SAVE_USER,
+  SAVE_USER_QUESTION,
+  SAVE_USER_ANSWER
+};
+
 export const UserAction = {
   saveUser,
-  saveUserQuestion
+  saveUserQuestion,
+  saveUserAnswer
 };
