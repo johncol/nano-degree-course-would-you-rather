@@ -1,0 +1,11 @@
+@import './../../styles/base.scss';
+
+.leaderboard {
+  max-width: 90rem;
+  margin: 4rem auto 0;
+
+  &__avatar {
+    width: 4rem;
+    max-width: 4rem;
+  }
+}

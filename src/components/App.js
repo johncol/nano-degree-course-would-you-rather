@@ -5,6 +5,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Login from './login/Login';
 import Navigation from './navigation/Navigation';
 import Home from './home/Home';
+import Leaderboard from './leaderboard/Leaderboard';
+
 import AddQuestion from './add-question/AddQuestion';
 import { QuestionAction } from '../state/actions/questions';
 
@@ -26,6 +28,7 @@ class App extends Component {
           <div>
             <Route exact path="/" component={Home} />
             <Route exact path="/add-question" component={AddQuestion} />
+            <Route exact path="/leaderboard" component={Leaderboard} />
           </div>
         </div>
       </BrowserRouter>
