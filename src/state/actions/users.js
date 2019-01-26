@@ -54,13 +54,15 @@ export const UserActionCreator = {
 
 const fetchAllUsers = () => dispatch => {
   dispatch(LoaderAction.showLoader());
-  return API._getUsers(users => {
-    dispatch(LoaderAction.hideLoader());
-    dispatch(UserActionCreator.saveAllUsers(users));
-  }).catch(error => {
-    dispatch(LoaderAction.hideLoader());
-    console.warn('Error fetching all users:', error);
-  });
+  return API._getUsers()
+    .then(users => {
+      dispatch(LoaderAction.hideLoader());
+      dispatch(UserActionCreator.saveAllUsers(users));
+    })
+    .catch(error => {
+      dispatch(LoaderAction.hideLoader());
+      console.warn('Error fetching all users:', error);
+    });
 };
 
 export const UserAction = {
