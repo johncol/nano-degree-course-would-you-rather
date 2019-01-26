@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/nano-degree-would-you-rather/static/css/1.cbec4ca1.chunk.css"
   },
   {
-    "revision": "a9c0a3ecc6e363adea62846d55f798eb",
+    "revision": "0b659ce0e02ef77dff94c395e5b00e60",
     "url": "/nano-degree-would-you-rather/index.html"
   }
 ];
