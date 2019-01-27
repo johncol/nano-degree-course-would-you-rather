@@ -6,17 +6,19 @@ const QuestionOptions = ({ question, optionSelected, answerQuestion }) => {
   return (
     <div className="question__options">
       <QuestionOption
-        option={question.optionOne}
+        question={question}
+        option={'optionOne'}
         optionIndex={1}
         optionSelected={optionSelected}
-        onClick={() => answerQuestion('optionOne')}
+        onClick={answerQuestion}
       />
       <span className="question__separator">or</span>
       <QuestionOption
-        option={question.optionTwo}
+        question={question}
+        option={'optionTwo'}
         optionIndex={2}
         optionSelected={optionSelected}
-        onClick={() => answerQuestion('optionTwo')}
+        onClick={answerQuestion}
       />
     </div>
   );

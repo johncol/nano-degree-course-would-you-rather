@@ -50,6 +50,15 @@
     }
   }
 
+  &__option-data {
+    display: block;
+    font-size: 1.7rem;
+
+    @media screen and (min-width: $breakpoint-sm) {
+      font-size: 2rem;
+    }
+  }
+
   &__selected-text {
     display: none;
   }
