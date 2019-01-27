@@ -10,10 +10,12 @@ import Leaderboard from './leaderboard/Leaderboard';
 import Question from './question/Question';
 
 import { QuestionAction } from '../state/actions/questions';
+import { UserAction } from '../state/actions/users';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchAllQuestions();
+    this.props.fetchAllUsers();
   }
 
   render() {
@@ -45,7 +47,8 @@ const stateToProps = state => ({
 const dispatchToProps = dispatch => ({
   fetchAllQuestions: () => {
     dispatch(QuestionAction.fetchAllQuestions());
-  }
+  },
+  fetchAllUsers: () => dispatch(UserAction.fetchAllUsers())
 });
 
 export default connect(
