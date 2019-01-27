@@ -14,6 +14,16 @@
 
   &__title {
     margin-bottom: 4rem;
+    font-size: 5rem;
+    color: $grey-dark;
+
+    @media screen and (min-width: $breakpoint-sm) {
+      font-size: 7rem;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+      font-size: 9rem;
+    }
   }
 
   &__option {
@@ -38,6 +48,10 @@
         text-align: left;
       }
     }
+  }
+
+  &__selected-text {
+    display: none;
   }
 
   &__separator {
@@ -80,6 +94,16 @@
       &--selected {
         color: rgba($red-main, 1);
         opacity: 1;
+      }
+    }
+
+    .question__option--selected .question__selected-text {
+      display: block;
+      font-size: 1.5rem;
+      opacity: 0.6;
+
+      @media screen and (min-width: $breakpoint-sm) {
+        display: none;
       }
     }
   }

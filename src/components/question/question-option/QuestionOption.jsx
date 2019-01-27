@@ -15,7 +15,8 @@ class QuestionOption extends Component {
     const { option, onClick: answerQuestion } = this.props;
     return (
       <article className={this.buildClassName()} onClick={answerQuestion}>
-        {option.text}
+        <span className="question__option-text">{option.text}</span>
+        <span className="question__selected-text">(selected)</span>
       </article>
     );
   }
