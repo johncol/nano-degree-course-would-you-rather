@@ -20,7 +20,7 @@ const QuestionOption = ({ option, text }) => {
 class QuestionPreview extends Component {
   navigateToQuestion = () => {
     const { question, history } = this.props;
-    history.push('/question/' + question.id);
+    history.push('/questions/' + question.id);
   };
 
   render() {

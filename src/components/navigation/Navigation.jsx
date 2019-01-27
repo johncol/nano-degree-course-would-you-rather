@@ -37,7 +37,7 @@ class Navigation extends Component {
 
   currentPathIsQuestion = () => {
     const { pathname } = this.props.history.location;
-    return pathname.startsWith('/question');
+    return pathname.startsWith('/questions');
   };
 
   render() {
@@ -81,7 +81,11 @@ class Navigation extends Component {
 
           <li>
             {currentPathIsQuestion && (
-              <NavLink className="nav__link" to="/question" onClick={this.navigateToHome}>
+              <NavLink
+                className="nav__link"
+                to="/questions"
+                onClick={this.navigateToHome}
+              >
                 Go Back
               </NavLink>
             )}
