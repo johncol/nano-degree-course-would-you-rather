@@ -5,9 +5,16 @@
   margin-bottom: 2rem;
   opacity: 0.95;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     opacity: 1;
+    transform: scale(1.03);
+  }
+
+  &:active {
+    opacity: 1;
+    transform: scale(1.03) translateY(-2px);
   }
 
   &__option {
