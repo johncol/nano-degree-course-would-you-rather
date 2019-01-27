@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import QuestionOption from './question-option/QuestionOption';
 import QuestionWrapper from './question-wrapper/QuestionWrapper';
 import QuestionTitle from './question-title/QuestionTitle';
+import QuestionAuthor from './question-author/QuestionAuthor';
+import QuestionOptions from './question-options/QuestionOptions';
 import { QuestionAction } from '../../state/actions/questions';
 
 import './question.scss';
-import QuestionAuthor from './question-author/QuestionAuthor';
 
 class Question extends Component {
   answerQuestion = optionSelected => {
@@ -22,21 +22,11 @@ class Question extends Component {
     return (
       <QuestionWrapper answerable={answerable}>
         <QuestionTitle />
-        <div className="question__options">
-          <QuestionOption
-            option={question.optionOne}
-            optionIndex={1}
-            optionSelected={optionSelected}
-            onClick={() => this.answerQuestion('optionOne')}
-          />
-          <span className="question__separator">or</span>
-          <QuestionOption
-            option={question.optionTwo}
-            optionIndex={2}
-            optionSelected={optionSelected}
-            onClick={() => this.answerQuestion('optionTwo')}
-          />
-        </div>
+        <QuestionOptions
+          question={question}
+          optionSelected={optionSelected}
+          answerQuestion={this.answerQuestion}
+        />
         <QuestionAuthor author={question.author} />
       </QuestionWrapper>
     );
