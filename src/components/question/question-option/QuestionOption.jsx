@@ -39,7 +39,10 @@ const stateToProps = (state, props) => {
   const votes = question[option].votes.length;
 
   const { optionOne, optionTwo } = question;
-  const percentage = (votes / (optionOne.votes.length + optionTwo.votes.length)) * 100;
+  const percentage = (
+    (votes / (optionOne.votes.length + optionTwo.votes.length)) *
+    100
+  ).toFixed(1);
 
   const { username } = state.auth;
   const showStatistics =
