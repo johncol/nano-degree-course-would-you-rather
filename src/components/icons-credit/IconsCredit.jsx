@@ -5,11 +5,21 @@ import './icons-credit.scss';
 const IconsCredit = () => (
   <div className="icons-credit">
     Icons made by{' '}
-    <a href="http://www.freepik.com/" title="Freepik">
+    <a
+      href="http://www.freepik.com/"
+      title="Freepik"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Freepik
     </a>{' '}
     from{' '}
-    <a href="https://www.flaticon.com/" title="Flaticon">
+    <a
+      href="https://www.flaticon.com/"
+      title="Flaticon"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       www.flaticon.com
     </a>{' '}
     is licensed by{' '}
