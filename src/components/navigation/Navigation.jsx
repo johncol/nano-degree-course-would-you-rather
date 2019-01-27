@@ -44,7 +44,7 @@ class Navigation extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink className="nav__link" to="/add-question" onClick={this.hideMenu}>
+            <NavLink className="nav__link" to="/add" onClick={this.hideMenu}>
               Add question
             </NavLink>
           </li>
