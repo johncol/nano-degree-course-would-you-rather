@@ -7,6 +7,7 @@ import Navigation from './navigation/Navigation';
 import Home from './home/Home';
 import AddQuestion from './add-question/AddQuestion';
 import Leaderboard from './leaderboard/Leaderboard';
+import Question from './question/Question';
 
 import { QuestionAction } from '../state/actions/questions';
 
@@ -29,6 +30,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/add" component={AddQuestion} />
             <Route exact path="/leaderboard" component={Leaderboard} />
+            <Route exact path="/question/:id" component={Question} />
           </div>
         </div>
       </BrowserRouter>

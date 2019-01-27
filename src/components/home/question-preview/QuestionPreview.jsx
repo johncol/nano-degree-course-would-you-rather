@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './question-preview.scss';
@@ -24,26 +25,33 @@ const QuestionOption = ({ option, text, allowToAnswer, onSelected: answerQuestio
   );
 };
 
-const QuestionPreview = props => {
-  const { username, allowToAnswer, answerQuestion, question } = props;
-  const { optionOne, optionTwo } = question;
-  return (
-    <article className="question-preview">
-      <QuestionOption
-        option={1}
-        text={optionOne.text}
-        allowToAnswer={allowToAnswer}
-        onSelected={() => answerQuestion(username, question.id, 'optionOne')}
-      />
-      <QuestionOption
-        option={2}
-        text={optionTwo.text}
-        allowToAnswer={allowToAnswer}
-        onSelected={() => answerQuestion(username, question.id, 'optionTwo')}
-      />
-    </article>
-  );
-};
+class QuestionPreview extends React.Component {
+  navigateToQuestion = () => {
+    const { question, history } = this.props;
+    history.push('/question/' + question.id);
+  };
+
+  render() {
+    const { username, allowToAnswer, answerQuestion, question } = this.props;
+    const { optionOne, optionTwo } = question;
+    return (
+      <article className="question-preview" onClick={this.navigateToQuestion}>
+        <QuestionOption
+          option={1}
+          text={optionOne.text}
+          allowToAnswer={allowToAnswer}
+          onSelected={() => answerQuestion(username, question.id, 'optionOne')}
+        />
+        <QuestionOption
+          option={2}
+          text={optionTwo.text}
+          allowToAnswer={allowToAnswer}
+          onSelected={() => answerQuestion(username, question.id, 'optionTwo')}
+        />
+      </article>
+    );
+  }
+}
 
 const stateToProps = (state, props) => ({
   ...props,
@@ -56,7 +64,9 @@ const dispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  stateToProps,
-  dispatchToProps
-)(QuestionPreview);
+export default withRouter(
+  connect(
+    stateToProps,
+    dispatchToProps
+  )(QuestionPreview)
+);
