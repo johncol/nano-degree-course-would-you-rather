@@ -7,6 +7,7 @@ import QuestionTitle from './question-title/QuestionTitle';
 import { QuestionAction } from '../../state/actions/questions';
 
 import './question.scss';
+import QuestionAuthor from './question-author/QuestionAuthor';
 
 class Question extends Component {
   answerQuestion = optionSelected => {
@@ -21,7 +22,7 @@ class Question extends Component {
     return (
       <QuestionWrapper answerable={answerable}>
         <QuestionTitle />
-        <div className="question__info">
+        <div className="question__options">
           <QuestionOption
             option={question.optionOne}
             optionIndex={1}
@@ -36,6 +37,7 @@ class Question extends Component {
             onClick={() => this.answerQuestion('optionTwo')}
           />
         </div>
+        <QuestionAuthor author={question.author} />
       </QuestionWrapper>
     );
   }

@@ -1,0 +1,17 @@
+@import './../../../styles/base';
+
+.question__author {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin-top: 10rem;
+
+  &-name {
+    font-weight: bold;
+  }
+
+  &-avatar {
+    width: 4rem;
+    max-width: 4rem;
+  }
+}
