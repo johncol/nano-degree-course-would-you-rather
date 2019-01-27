@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/nano-degree-would-you-rather/precache-manifest.7de5f9be4f74b6af00a249b63f405338.js"
+  "/nano-degree-would-you-rather/precache-manifest.eba1b1c04b7e81f729b7a65f99f64111.js"
 );
 
 workbox.clientsClaim();
