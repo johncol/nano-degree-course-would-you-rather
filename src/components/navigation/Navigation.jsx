@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import NavToggle from './nav-toggle/NavToggle';
+import LinkItem from './link-item/LinkItem';
+import LogoutItem from './logout-item/LogoutItem';
 import { AuthAction } from '../../state/actions/auth';
 
 import './navigation.scss';
@@ -40,56 +42,39 @@ class Navigation extends Component {
     return pathname.startsWith('/questions');
   };
 
-  render() {
-    const { username } = this.props;
+  buildNavClassName = () => {
     const { visibleOnSmallBreakpoint } = this.state;
     const navClassName = 'nav' + (visibleOnSmallBreakpoint ? ' nav--toggle-visible' : '');
+    return navClassName;
+  };
+
+  render() {
+    const { username } = this.props;
     const currentPathIsQuestion = this.currentPathIsQuestion();
     return (
-      <nav className={navClassName}>
+      <nav className={this.buildNavClassName()}>
         {!currentPathIsQuestion && <NavToggle onClick={this.toggleMenuVisibility} />}
         <ul>
           {!currentPathIsQuestion && (
             <React.Fragment>
-              <li>
-                <NavLink className="nav__link" exact to="/" onClick={this.hideMenu}>
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="nav__link" to="/add" onClick={this.hideMenu}>
-                  Add question
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="nav__link" to="/leaderboard" onClick={this.hideMenu}>
-                  Leaderboard
-                </NavLink>
-              </li>
-              <li>
-                <span
-                  to="/logout"
-                  className="nav__link nav__link--user"
-                  onClick={this.logout}
-                >
-                  Logout <span className="nav__link__username">{username}</span>
-                  <i className="material-icons tiny">person_outline</i>
-                </span>
-              </li>
+              <LinkItem exact to="/" onClick={this.hideMenu}>
+                Home
+              </LinkItem>
+              <LinkItem to="/add" onClick={this.hideMenu}>
+                Add question
+              </LinkItem>
+              <LinkItem to="/leaderboard" onClick={this.hideMenu}>
+                Leaderboard
+              </LinkItem>
+              <LogoutItem username={username} onClick={this.logout} />
             </React.Fragment>
           )}
 
-          <li>
-            {currentPathIsQuestion && (
-              <NavLink
-                className="nav__link"
-                to="/questions"
-                onClick={this.navigateToHome}
-              >
-                Go Back
-              </NavLink>
-            )}
-          </li>
+          {currentPathIsQuestion && (
+            <LinkItem to="/questions" onClick={this.navigateToHome}>
+              Go Back
+            </LinkItem>
+          )}
         </ul>
       </nav>
     );
