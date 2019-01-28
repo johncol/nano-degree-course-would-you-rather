@@ -1,0 +1,21 @@
+@import './../../../styles/base';
+
+.question-not-found {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: $grey-dark;
+  color: $red-main;
+  user-select: none;
+  font-size: 5rem;
+  letter-spacing: 7px;
+  height: calc(100vh - 56px);
+
+  @media screen and (min-width: $breakpoint-sm) {
+    height: calc(100vh - 70px);
+  }
+}

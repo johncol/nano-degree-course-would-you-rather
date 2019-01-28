@@ -5,6 +5,7 @@ import QuestionWrapper from './question-wrapper/QuestionWrapper';
 import QuestionTitle from './question-title/QuestionTitle';
 import QuestionAuthor from './question-author/QuestionAuthor';
 import QuestionOptions from './question-options/QuestionOptions';
+import QuestionNotFound from './question-not-found/QuestionNotFound';
 import { QuestionAction } from '../../state/actions/questions';
 
 import './question.scss';
@@ -18,7 +19,11 @@ class Question extends Component {
   };
 
   render() {
-    const { question, answerable, optionSelected } = this.props;
+    const { questionNotFound, question, answerable, optionSelected } = this.props;
+    if (questionNotFound) {
+      return <QuestionNotFound />;
+    }
+
     return (
       <QuestionWrapper answerable={answerable}>
         <QuestionTitle />
@@ -34,15 +39,20 @@ class Question extends Component {
 }
 
 const stateToProps = (state, props) => {
+  const { id: questionId } = props.match.params;
+  const question = state.questions[questionId];
+  if (!question) {
+    return { questionNotFound: true };
+  }
+
   const { username } = state.auth;
   const user = state.users.list[username];
-  const { id: questionId } = props.match.params;
   const answer = user.answers[questionId];
   const optionSelected = answer === 'optionOne' ? 1 : answer === 'optionTwo' ? 2 : -1;
 
   return {
     username,
-    question: state.questions[questionId],
+    question,
     answerable: !answer,
     optionSelected
   };
