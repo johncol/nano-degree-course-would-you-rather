@@ -2,20 +2,37 @@
 
 .question-not-found {
   position: absolute;
+  top: 0;
   left: 0;
   width: 100vw;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   background: $grey-dark;
   color: $red-main;
   user-select: none;
-  font-size: 5rem;
+  font-size: 3rem;
   letter-spacing: 7px;
-  height: calc(100vh - 56px);
 
   @media screen and (min-width: $breakpoint-sm) {
-    height: calc(100vh - 70px);
+    font-size: 8rem;
+    letter-spacing: 7px;
+  }
+
+  &__link {
+    font-size: 1.5rem;
+    transition: all 0.1s ease;
+
+    @media screen and (min-width: $breakpoint-sm) {
+      font-size: 2rem;
+    }
+
+    &:hover {
+      font-weight: 700;
+      transform: translateY(-1px);
+    }
   }
 }
