@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Login from './login/Login';
 import Navigation from './navigation/Navigation';
@@ -8,6 +8,7 @@ import Home from './home/Home';
 import AddQuestion from './add-question/AddQuestion';
 import Leaderboard from './leaderboard/Leaderboard';
 import Question from './question/Question';
+import NotFound from './shared/not-found/NewFound';
 
 import { QuestionAction } from '../state/actions/questions';
 import { UserAction } from '../state/actions/users';
@@ -28,12 +29,13 @@ class App extends Component {
       <BrowserRouter basename="/nano-degree-would-you-rather/">
         <div className="main-container">
           <Navigation />
-          <div>
+          <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/add" component={AddQuestion} />
             <Route exact path="/leaderboard" component={Leaderboard} />
             <Route exact path="/questions/:id" component={Question} />
-          </div>
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </BrowserRouter>
     );
