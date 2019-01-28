@@ -5,7 +5,7 @@ import QuestionWrapper from './question-wrapper/QuestionWrapper';
 import QuestionTitle from './question-title/QuestionTitle';
 import QuestionAuthor from './question-author/QuestionAuthor';
 import QuestionOptions from './question-options/QuestionOptions';
-import QuestionNotFound from './question-not-found/QuestionNotFound';
+import NotFound from './../shared/not-found/NewFound';
 import { QuestionAction } from '../../state/actions/questions';
 
 import './question.scss';
@@ -21,7 +21,7 @@ class Question extends Component {
   render() {
     const { questionNotFound, question, answerable, optionSelected } = this.props;
     if (questionNotFound) {
-      return <QuestionNotFound />;
+      return <NotFound message="Question not found" />;
     }
 
     return (
