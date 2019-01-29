@@ -4,6 +4,8 @@ Would you rather? is a game of a set of questions in which players must choose o
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Find the application running at github pages [would you rather](https://johncol.github.io/nano-degree-would-you-rather/).
+
 ## `npm start`
 
 Runs the app in the development mode.<br>
