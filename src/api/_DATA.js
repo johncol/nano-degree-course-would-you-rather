@@ -1,6 +1,8 @@
+import * as STORAGE from './_STORAGE';
+
 const timeout = 1000;
 
-let users = {
+let users = STORAGE.getUsers() || {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
@@ -36,7 +38,7 @@ let users = {
   }
 };
 
-let questions = {
+let questions = STORAGE.getQuestions() || {
   '8xf0y6ziyjabvozdd253nd': {
     id: '8xf0y6ziyjabvozdd253nd',
     author: 'sarahedo',
@@ -117,6 +119,16 @@ let questions = {
   }
 };
 
+function updateUsers(_users) {
+  users = _users;
+  STORAGE.saveUsers(users);
+}
+
+function updateQuestions(_questions) {
+  questions = _questions;
+  STORAGE.saveQuestions(questions);
+}
+
 function generateUID() {
   return (
     Math.random()
@@ -191,18 +203,18 @@ export function _saveQuestion(question) {
     const formattedQuestion = formatQuestion(question);
 
     setTimeout(() => {
-      questions = {
+      updateQuestions({
         ...questions,
         [formattedQuestion.id]: formattedQuestion
-      };
+      });
 
-      users = {
+      updateUsers({
         ...users,
         [authedUser]: {
           ...users[authedUser],
           questions: users[authedUser].questions.concat([formattedQuestion.id])
         }
-      };
+      });
 
       res(formattedQuestion);
     }, timeout);
@@ -212,7 +224,7 @@ export function _saveQuestion(question) {
 export function _saveQuestionAnswer({ authedUser, qid, answer }) {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      users = {
+      updateUsers({
         ...users,
         [authedUser]: {
           ...users[authedUser],
@@ -221,9 +233,9 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
             [qid]: answer
           }
         }
-      };
+      });
 
-      questions = {
+      updateQuestions({
         ...questions,
         [qid]: {
           ...questions[qid],
@@ -232,7 +244,7 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
             votes: questions[qid][answer].votes.concat([authedUser])
           }
         }
-      };
+      });
 
       res();
     }, timeout);
