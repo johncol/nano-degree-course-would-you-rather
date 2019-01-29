@@ -141,7 +141,10 @@ export function _login(username, password) {
       if (user) {
         resolve({ user });
       } else {
-        reject({ message: 'Username or password invalid' });
+        reject({
+          message:
+            'Credentials invalid, available users are sarahedo, johndoe and tylermcginnis'
+        });
       }
     }, timeout);
   });
