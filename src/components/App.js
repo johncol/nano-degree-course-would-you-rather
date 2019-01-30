@@ -8,7 +8,7 @@ import Home from './home/Home';
 import AddQuestion from './add-question/AddQuestion';
 import Leaderboard from './leaderboard/Leaderboard';
 import Question from './question/Question';
-import NotFound from './shared/not-found/NewFound';
+import NotFound from './shared/not-found/NotFound';
 
 import { QuestionAction } from '../state/actions/questions';
 import { UserAction } from '../state/actions/users';

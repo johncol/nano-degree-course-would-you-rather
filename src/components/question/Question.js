@@ -5,7 +5,7 @@ import QuestionWrapper from './question-wrapper/QuestionWrapper';
 import QuestionTitle from './question-title/QuestionTitle';
 import QuestionAuthor from './question-author/QuestionAuthor';
 import QuestionOptions from './question-options/QuestionOptions';
-import NotFound from './../shared/not-found/NewFound';
+import NotFound from './../shared/not-found/NotFound';
 import { QuestionAction } from '../../state/actions/questions';
 
 import './question.scss';
