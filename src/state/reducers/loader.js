@@ -1,4 +1,4 @@
-import { LoaderActionType } from '../actions/loader';
+import { LoaderActionType } from '../actions/action-types';
 
 const loaderReducer = (state = false, action) => {
   switch (action.type) {

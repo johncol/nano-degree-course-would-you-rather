@@ -1,24 +1,21 @@
 import * as API from './../../api/_DATA';
+import { AuthActionType } from './action-types';
 import { LoaderAction } from './loader';
 import { UserActionCreator } from './users';
 
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-const LOGIN_FAIL = 'LOGIN_FAIL';
-const LOGOUT = 'LOGOUT';
-
 const AuthActionCreator = {
   loginSuccess: username => ({
-    type: LOGIN_SUCCESS,
+    type: AuthActionType.LOGIN_SUCCESS,
     payload: username
   }),
 
   loginFail: error => ({
-    type: LOGIN_FAIL,
+    type: AuthActionType.LOGIN_FAIL,
     payload: error
   }),
 
   logout: () => ({
-    type: LOGOUT
+    type: AuthActionType.LOGOUT
   })
 };
 
@@ -37,12 +34,6 @@ const login = (username, password) => dispatch => {
 };
 
 const logout = () => dispatch => dispatch(AuthActionCreator.logout());
-
-export const AuthActionType = {
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT
-};
 
 export const AuthAction = {
   login,

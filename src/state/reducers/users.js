@@ -1,4 +1,4 @@
-import { UserActionType } from '../actions/users';
+import { UserActionType } from '../actions/action-types';
 
 const initialUsersState = {
   allUsersRequested: false,

@@ -1,4 +1,4 @@
-import { QuestionActionType } from '../actions/questions';
+import { QuestionActionType } from '../actions/action-types';
 
 const questionsReducer = (state = {}, action) => {
   switch (action.type) {

@@ -1,19 +1,13 @@
-const SHOW_LOADER = 'SHOW_LOADER';
-const HIDE_LOADER = 'HIDE_LOADER';
+import { LoaderActionType } from './action-types';
 
 const LoaderActionCreator = {
   showLoader: () => ({
-    type: SHOW_LOADER
+    type: LoaderActionType.SHOW_LOADER
   }),
 
   hideLoader: () => ({
-    type: HIDE_LOADER
+    type: LoaderActionType.HIDE_LOADER
   })
-};
-
-export const LoaderActionType = {
-  SHOW_LOADER,
-  HIDE_LOADER
 };
 
 export const LoaderAction = {

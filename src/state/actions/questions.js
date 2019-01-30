@@ -1,25 +1,21 @@
 import * as API from './../../api/_DATA';
+import { QuestionActionType } from './action-types';
 import { LoaderAction } from './loader';
 import { UserActionCreator } from './users';
 
-const SAVE_ALL_QUESTIONS = 'SAVE_ALL_QUESTIONS';
-const ADD_QUESTION = 'ADD_QUESTION';
-const ANSWER_QUESTION = 'ANSWER_QUESTION';
-const UNANSWER_QUESTION = 'UNANSWER_QUESTION';
-
 const QuestionActionCreator = {
   saveAllQuestions: questions => ({
-    type: SAVE_ALL_QUESTIONS,
+    type: QuestionActionType.SAVE_ALL_QUESTIONS,
     payload: questions
   }),
 
   addQuestion: question => ({
-    type: ADD_QUESTION,
+    type: QuestionActionType.ADD_QUESTION,
     payload: question
   }),
 
   answerQuestion: (username, questionId, option) => ({
-    type: ANSWER_QUESTION,
+    type: QuestionActionType.ANSWER_QUESTION,
     payload: {
       username,
       questionId,
@@ -28,7 +24,7 @@ const QuestionActionCreator = {
   }),
 
   unanswerQuestion: (username, questionId, option) => ({
-    type: UNANSWER_QUESTION,
+    type: QuestionActionType.UNANSWER_QUESTION,
     payload: {
       username,
       questionId,
@@ -79,13 +75,6 @@ const answerQuestion = (username, questionId, option) => dispatch => {
     dispatch(UserActionCreator.unsaveUserAnswer(username, questionId));
     alert('An error occured in the server, the question could not be saved');
   });
-};
-
-export const QuestionActionType = {
-  SAVE_ALL_QUESTIONS,
-  ADD_QUESTION,
-  ANSWER_QUESTION,
-  UNANSWER_QUESTION
 };
 
 export const QuestionAction = {

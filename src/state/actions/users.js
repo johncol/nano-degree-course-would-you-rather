@@ -1,28 +1,15 @@
 import * as API from './../../api/_DATA';
+import { UserActionType } from './action-types';
 import { LoaderAction } from './loader';
-
-const SAVE_USER = 'SAVE_USER';
-const SAVE_USER_QUESTION = 'SAVE_USER_QUESTION';
-const SAVE_USER_ANSWER = 'SAVE_USER_ANSWER';
-const UNSAVE_USER_ANSWER = 'UNSAVE_USER_ANSWER';
-const SAVE_ALL_USERS = 'SAVE_ALL_USERS';
-
-export const UserActionType = {
-  SAVE_USER,
-  SAVE_USER_QUESTION,
-  SAVE_USER_ANSWER,
-  UNSAVE_USER_ANSWER,
-  SAVE_ALL_USERS
-};
 
 export const UserActionCreator = {
   saveUser: user => ({
-    type: SAVE_USER,
+    type: UserActionType.SAVE_USER,
     payload: user
   }),
 
   saveUserQuestion: (username, questionId) => ({
-    type: SAVE_USER_QUESTION,
+    type: UserActionType.SAVE_USER_QUESTION,
     payload: {
       username,
       questionId
@@ -30,7 +17,7 @@ export const UserActionCreator = {
   }),
 
   saveUserAnswer: (username, questionId, option) => ({
-    type: SAVE_USER_ANSWER,
+    type: UserActionType.SAVE_USER_ANSWER,
     payload: {
       username,
       questionId,
@@ -39,7 +26,7 @@ export const UserActionCreator = {
   }),
 
   unsaveUserAnswer: (username, questionId) => ({
-    type: UNSAVE_USER_ANSWER,
+    type: UserActionType.UNSAVE_USER_ANSWER,
     payload: {
       username,
       questionId
@@ -47,7 +34,7 @@ export const UserActionCreator = {
   }),
 
   saveAllUsers: users => ({
-    type: SAVE_ALL_USERS,
+    type: UserActionType.SAVE_ALL_USERS,
     payload: users
   })
 };
