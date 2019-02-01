@@ -27,3 +27,7 @@ Post a new question to allow any user to answer it. A question simply consists o
 ### Leaderboard
 
 Displays the top users information, ranked according to the sum of questions posted and answered.
+
+## License
+
+MIT licensed.
