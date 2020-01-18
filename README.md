@@ -8,7 +8,7 @@ To download all dependencies
 
 ## Run `yarn start`
 
-To start the app in development mode in [http://localhost:3000](http://localhost:3000)
+To start the app in Development mode in [http://localhost:3000](http://localhost:3000)
 
 ## How it works?
 
