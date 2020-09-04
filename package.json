@@ -4,7 +4,7 @@
   "homepage": "http://johncol.github.io/nano-degree-would-you-rather",
   "private": true,
   "dependencies": {
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-loader-spinner": "^2.3.0",
